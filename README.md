@@ -1,8 +1,8 @@
 # TravelApp
 
-#Travel Booking Website to book Bus Tickets for the famous Tourist Desitnations - Main focus was onto implement different cloud technologies
+### Travel Booking Website to book Bus Tickets for the famous Tourist Desitnations - Main focus was onto implement different cloud technologies
 
-#Technologies Used:
+**Technologies Used:**
 1. Python
 2. Flask Framework
 3. Javascript

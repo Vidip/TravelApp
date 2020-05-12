@@ -13,5 +13,5 @@
 
 Architecture:
 
-![Backend Cloud Architecture](architecture.png)
+![Backend Cloud Architecture](architecture.jpg)
 

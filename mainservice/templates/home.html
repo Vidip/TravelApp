@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="jumbotron">
+        <h2> <b> Welcome to CanaTour </b> </h2>
+        <p> CanaTour is an web application that allows you to perform search of tourist destinations, and 
+            book a ticket to provincial/national parks, major beaches, and important cities.
+        </p>
+    </div>      
+
+    <div class="container">   
+        <ul class="nav nav-tabs nav-justified">
+            <li class="nav-item" >
+                <a href="{{url_for('getallcities',type='PARK')}}">
+                <figure>
+                    <img src="https://canatours3bucket.s3.amazonaws.com/images/national-park.jpg" width="300" height="200"/> 
+                    <figcaption> <b> National Parks </b> </figcaption>
+                </figure>
+                </a>   
+            </li>
+            <li class="nav-item" >
+                <a href="{{url_for('getallcities',type='BEACH')}}">
+                <figure>
+                    <img src="https://canatours3bucket.s3.amazonaws.com/images/beach.jpg" width="300" height="200"/> 
+                    <figcaption> <b> Beaches </b> </figcaption>
+                </figure>
+                </a>
+            </li>
+            <li class="nav-item" >
+                <a href="{{url_for('getallcities',type='CITY')}}">
+                <figure>
+                    <img src="https://canatours3bucket.s3.amazonaws.com/images/city.jpg" width="300" height="200"/>
+                    <figcaption> <b> Cities </b> </figcaption>
+                </figure>
+                </a>
+            </li>
+        </ul>      
+          
+        <div class="tab-content">
+            <div id="park">
+                <form action="{{ url_for('get_schedule') }}" method="post">
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item" style="border: none">
+                            <div class="dropdown">
+                                  <select id="source" name="source" class="browser-default custom-select custom-select-lg mb-3">
+                                    <option value="">Select Source City</option>
+                                      {% for j in source_list %}
+                                <option value="{{j['cityid']}}">{{j['cityname']}}</option>
+                                      {% endfor %}
+                              </select>
+                            </div>
+                        </li>
+                        <li class="list-group-item" style="border: none">
+                            <div class="dropdown">
+                                <select id="destination" name="destination" class="browser-default custom-select custom-select-lg mb-3">
+                                    <option value="">Select Destination</option>
+                                    {% for i in destination_list %}
+                                <option value="{{i['destid']}}">{{i['destname']}}</option>
+                                    {% endfor %}
+                              </select>
+                            </div>
+                        </li>
+                        <li class="list-group-item" style="border: none">
+                           <!-- <label for="datepicker"> Departure Date: </label>
+                            <input type="date" id="datepicker" name="datepicker">-->
+
+                            <div class="bootstrap-iso">
+                           <div class="form-group" style=" "> <!-- Date input -->
+                             <!--  <label class="control-label" for="date">Date</label>-->
+                            <input class="form-control" id="datepicker" name="datepicker" placeholder="Departure Date" type="text" style="padding-top: 13%; padding-bottom: 14%;"/>
+
+                          </div>
+                      </div>
+                        </li>
+
+                        <!--Removing Return Date Field due to change in datastoring logic thus not implementing return journey feature
+                        <li class="list-group-item" style="border: none">
+                           <label for="datepicker"> Departure Date: </label>
+                            <input type="date" id="datepicker" name="datepicker">
+
+                            <div class="bootstrap-iso">
+                           <div class="form-group" style=""> 
+                              <label class="control-label" for="date">Date</label>
+                            <input class="form-control" id="date2" name="date2" placeholder="Return Date" type="text" style="padding-top: 17%; padding-bottom: 17%;"/>
+                            
+                          </div>
+                      </div>
+                        </li>
+-->
+                        <li class="list-group-item" style="border: none">
+                           <!-- <label for="quantity"> No of passengers: </label>-->
+                           <!-- <input type="number" id="passengers" name="passengers" min="1" placeholder="Please Enter Number of Passengers">-->
+                            <div class="dropdown">
+                                  <select id="passengers" name="passengers" class="browser-default custom-select custom-select-lg mb-3">
+                                    <option value="">Select Number of Passengers</option>
+                                     <option value="1">1</option>
+                                      <option value="2">2</option>
+                                       <option value="3">3</option>
+                                        <option value="4">4</option>
+                                         <option value="5">5</option>
+                                          <option value="6">6</option>
+                              </select>
+                            </div>
+                        </li>
+                        <li class="list-group-item" style="border: none">
+                            <button type="submit" class="btn btn-success"> Search </button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+
+
+           
+
+            
+
+    </div>
+{% endblock %}

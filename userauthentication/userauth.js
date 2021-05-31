@@ -28,7 +28,6 @@ function signup_user(token_main)
 });
 
 app.post("/confirmsignup", (req, res) => {
-	console.log("hellow orld");
 var status = Confirm(req.body.otp,req.body.email,confirmsignup_user);
  function confirmsignup_user(status_user)
 { 
@@ -40,8 +39,8 @@ var status = Confirm(req.body.otp,req.body.email,confirmsignup_user);
 
 function sayhello(name,email,phone_number,password,callback)
 {
-	console.log("hello");
-	const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+
+const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 const CognitoUserPool = AmazonCognitoIdentity.CognitoUserPool;
 const AWS = require('aws-sdk');
 //const request = require('request');
@@ -50,8 +49,8 @@ const jwt = require('jsonwebtoken');
 global.fetch = require('node-fetch');
 
 const poolData = {    
-UserPoolId : "us-east-1_feVkMHrXA", // Your user pool id here    
-ClientId : "5fl0d45iue53026nou9fq3ppvh" // Your client id here
+UserPoolId : "", // Your user pool id here    
+ClientId : "" // Your client id here
 }; 
 const pool_region = 'us-east-1';
 
@@ -79,14 +78,13 @@ function Login(email,password,callback) {
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 const CognitoUserPool = AmazonCognitoIdentity.CognitoUserPool;
 const AWS = require('aws-sdk');
-//const request = require('request');
 const jwkToPem = require('jwk-to-pem');
 const jwt = require('jsonwebtoken');
 global.fetch = require('node-fetch');
 
 const poolData = {    
-UserPoolId : "us-east-1_feVkMHrXA", // Your user pool id here    
-ClientId : "5fl0d45iue53026nou9fq3ppvh" // Your client id here
+UserPoolId : "", // Your user pool id here    
+ClientId : "" // Your client id here
 }; 
 const pool_region = 'us-east-1';
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
@@ -103,9 +101,6 @@ const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
     var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
     cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess:function (result) {
-          //  console.log('access token + ' + result.getAccessToken().getJwtToken());
-           // console.log('id token + ' + result.getIdToken().getJwtToken());
-          //  console.log('refresh token + ' + result.getRefreshToken().getToken());
             var access_token = result.getAccessToken().getJwtToken()
             var token_id= result.getIdToken().getJwtToken()
             token_main = token_id
@@ -124,18 +119,17 @@ const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
 function Confirm(otp,email,callback)
 {
-	console.log(otp,email)
-	const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+
+const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 const CognitoUserPool = AmazonCognitoIdentity.CognitoUserPool;
 const AWS = require('aws-sdk');
-//const request = require('request');
 const jwkToPem = require('jwk-to-pem');
 const jwt = require('jsonwebtoken');
 global.fetch = require('node-fetch');
 
 const poolData = {    
-UserPoolId : "us-east-1_feVkMHrXA", // Your user pool id here    
-ClientId : "5fl0d45iue53026nou9fq3ppvh" // Your client id here
+UserPoolId : "", // Your user pool id here    
+ClientId : "" // Your client id here
 }; 
 const pool_region = 'us-east-1';
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
@@ -155,5 +149,3 @@ const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
             callback(result)
         });
 }
-//Confirm();
-//sayhello("vidip");
